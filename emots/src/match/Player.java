@@ -53,10 +53,10 @@ public class Player {
     
     /** Sets eligibility of player.
      * 
-     * @param bln           true if player should be eligible next match, false if not.
+     * @param eligible           true if player should be eligible next match, false if not.
      */
-    public void setEligible (boolean bln){
-        this.eligible = bln;
+    public void setEligible (boolean eligible){
+        this.eligible = eligible;
     }
     
     @Override
