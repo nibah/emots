@@ -19,7 +19,7 @@ public class Result {
      */
     public Result(Match match) {
         this.match = match;
-        winner = Winner.Undefined;
+        winner = Winner.UNDEFINED;
         ended = false;
         stats = new StandardMatchStatistics();
     }
@@ -31,7 +31,7 @@ public class Result {
     public Match getMatch() {return match;}
     
     /** Returns the Winner of the Match. The return type is a Winner enum,
-     * such as Home or Guest, not the actual Team object. If the match has not
+     * such as HOME or GUEST, not the actual Team object. If the match has not
      * ended yet, Winner.Undefined will be returned.
      * 
      * @return the Winner of the match
@@ -65,11 +65,11 @@ public class Result {
         int homeGoals = stats.getHomeGoals();
         int guestGoals = stats.getGuestGoals();
         if (homeGoals > guestGoals)
-            winner = Winner.Home;
+            winner = Winner.HOME;
         else if (guestGoals > homeGoals)
-            winner = Winner.Guest;
+            winner = Winner.GUEST;
         else
-            winner = Winner.Draw;
+            winner = Winner.DRAW;
     }
     
     /** Ends the match. After this, the Result object cannot be modified anymore. */
@@ -91,7 +91,7 @@ public class Result {
     public void setWinner(Winner winner) {
         if (ended)
             throw new MatchHasEndedException("Cannot change the winner. The match has already ended.");
-        if (winner == Winner.Home || winner == Winner.Guest || winner == Winner.Draw)
+        if (winner == Winner.HOME || winner == Winner.GUEST || winner == Winner.DRAW)
             throw new InvalidWinnerTypeException(
                     "setWinner should only be used to determine the winner in result "
                   + "of match rule violations. To evaluate the winner based on the scores "
