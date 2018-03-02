@@ -5,6 +5,7 @@ package match;
  * @author DamnMyCode
  */
 public class Player {
+    private static int numberOfPlayers = 0;
     
     private int id;
     private String name;
@@ -14,13 +15,12 @@ public class Player {
     
     /**
      * 
-     * @param id            id number
      * @param name          name
      * @param position      player position
      * @param stars         number of stars
      */
-    public Player (int id, String name, PlayerPosition position, int stars){
-        this.id = id;
+    public Player (String name, PlayerPosition position, int stars){
+        id = numberOfPlayers++;
         this.name = name;
         this.position = position;
         this.stars = stars;

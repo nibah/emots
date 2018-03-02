@@ -7,14 +7,20 @@ import java.util.Arrays;
  * @author DamnMyCode
  */
 public class Team {
+    private static int numberOfTeams = 0;
     
     private int id;
     private String name;
     private Player[] players;
     //private ChanceCard[] chanceCards; //TODO: create reference
     
-    public Team (int id, String name, Player[] players){ //TODO: update constructor (chanceCards)
-        this.id = id;
+    /**
+     * 
+     * @param name          the name of the team
+     * @param players       an array containing the players of the team
+     */
+    public Team (String name, Player[] players){ //TODO: update constructor (chanceCards)
+        id = numberOfTeams++;
         this.name = name;
         this.players = players;
     }
