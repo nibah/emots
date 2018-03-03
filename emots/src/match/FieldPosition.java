@@ -5,7 +5,7 @@ package match;
  * @author nibah
  */
 public enum FieldPosition {
-   GOALIE, DEFENDER, MIDFIELDER, ATTACKER;
+   GOALIE, DEFENDER, MIDFIELDER, ATTACKER, RIGHT_WINGER, LEFT_WINGER;
    
    /** Decides if a FieldPosition is a part of another FieldPosition, such as
     * LEFT_DEFENDER is part of DEFENDER
@@ -17,7 +17,9 @@ public enum FieldPosition {
        switch (fieldPosition) {
            case GOALIE      : return this == GOALIE;
            case DEFENDER    : return this == DEFENDER;
-           case MIDFIELDER  : return this == MIDFIELDER;
+           case MIDFIELDER  : return this == MIDFIELDER ||
+                                     this == LEFT_WINGER ||
+                                     this == RIGHT_WINGER;
            case ATTACKER    : return this == ATTACKER;
            default          : return false;
        }
