@@ -52,6 +52,36 @@ public class MatchTactic {
      */
     public int getNumberOfChanges() {return numberOfChanges;}
     
+    //TODO
+    //public FormationPattern convertToPattern(){};
+    
+    /** Changes the FieldPosition of a single player. As a result, the number
+     * of changes will be incremented by 1.
+     * 
+     * @param player        the player whose FieldPosition should be changed
+     * @param newPosition   the new FieldPosition of the player
+     * 
+     * @throws NoSuchPlayerException    if the player is not on the field
+     * @throes NullPointerException     if the player is null
+     */
+    public void changePosition(Player player, FieldPosition newPosition) {
+        if (player == null)
+            throw new NullPointerException("null is not a valid parameter.");
+        if (!formation.containsKey(player))
+            throw new NoSuchPlayerException("The player, is not on the field. "
+                                            + "To substitute, use substitute(Player down, Player up)");
+        formation.put(player, newPosition);
+        numberOfChanges++;
+    }
+    
+    /** Returns all of the players that are currently playing on the field.
+     * 
+     * @return an array containing all of the players currently playing
+     */
+    public Player[] getPlayers() {
+        return formation.keySet().toArray(new Player[0]);
+    }
+    
     /** Looks for the players who are currently playing on the given
      * FieldPosition or on any sub-FieldPosition of it.
      * 
@@ -83,23 +113,31 @@ public class MatchTactic {
         return players.toArray(new Player[0]);
     }
     
-    /** Changes the FieldPosition of a single player. As a result, the number
-     * of changes will be incremented by 1.
-     * 
-     * @param player        the player whose FieldPosition should be changed
-     * @param newPosition   the new FieldPosition of the player
-     * 
-     * @throws NoSuchPlayerException    if the player is not on the field
-     * @throes NullPointerException     if the player is null
-     */
-    public void changePosition(Player player, FieldPosition newPosition) {
-        if (player == null)
-            throw new NullPointerException("null is not a valid parameter.");
-        if (!formation.containsKey(player))
-            throw new NoSuchPlayerException("The player, is not on the field. "
-                                            + "To substitute, use substitute(Player down, Player up)");
-        formation.put(player, newPosition);
-        numberOfChanges++;
+    public boolean matchesPattern(FormationPattern pattern) {
+        if (pattern.numberOfPlayers() != getPlayers().length)
+            return false;
+        for (FieldPosition fieldPosition : pattern.getPattern().keySet())
+            if (pattern.numberOf(fieldPosition) != this.numberOf(fieldPosition))
+                return false;
+        return true;
+    }
+    
+    public int numberOf(FieldPosition fieldPosition) {
+        int count = 0;
+        for (FieldPosition currentPosition : formation.values())
+            if (currentPosition == fieldPosition)
+                count++;
+        return count;
+    }
+    
+    public int numberOf(FieldPosition fieldPosition, boolean countSubpositions) {
+        if (!countSubpositions)
+            return numberOf(fieldPosition);
+        int count = 0;
+        for (FieldPosition currentPosition : formation.values())
+            if (currentPosition.isA(fieldPosition))
+                count++;
+        return count;
     }
     
     /** Substitues a player on the field with another player on the bench. As a
