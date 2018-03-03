@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Team {
     private static int numberOfTeams = 0;
     
-    private final int id;
+    private int id;
     private String name;
     private Player[] players;
     //private ChanceCard[] chanceCards; //TODO: create reference
