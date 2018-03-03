@@ -94,11 +94,10 @@ public class Match {
         return result;
     }
     
-    /**
+    /** At this point, only starts method execute() in eventController.
      * 
      */
     public void play(){
-        eventController.rollEvent().execute(this);
-        
+        eventController.rollEvent().execute(this);    
     }
 }
