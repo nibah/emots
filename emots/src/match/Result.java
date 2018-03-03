@@ -86,7 +86,6 @@ public class Result {
      *                  and Draw are not allowed.
      * 
      * @throws MatchHasEndedException       if the match has already ended
-     * @throws InvalidWinnerTypeException   if the winner parameter is Home, Guest or Draw
      */
     public void setWinner(Winner winner) {
         if (ended)
