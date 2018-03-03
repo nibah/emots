@@ -92,7 +92,7 @@ public class Result {
         if (ended)
             throw new MatchHasEndedException("Cannot change the winner. The match has already ended.");
         if (winner == Winner.HOME || winner == Winner.GUEST || winner == Winner.DRAW)
-            throw new InvalidWinnerTypeException(
+            throw new IllegalArgumentException(
                     "setWinner should only be used to determine the winner in result "
                   + "of match rule violations. To evaluate the winner based on the scores "
                   + "use the method evaluateWinner() instead.");
