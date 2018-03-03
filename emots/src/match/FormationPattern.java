@@ -38,7 +38,7 @@ public class FormationPattern {
      * @return the number of players who play on the given field position
      */
     public int numberOf(FieldPosition fieldPosition) {
-        if (!pattern.containsKey(fieldPosition))
+        if (pattern.containsKey(fieldPosition))
             return pattern.get(fieldPosition);
         return 0;
     }
