@@ -8,6 +8,13 @@ import java.util.HashMap;
  * @author nibah
  */
 public class StandardFormationPattern extends FormationPattern{
+    /** Constructs a standard formation pattern using only GOALIEs (always 1),
+     * DEFENDERS, MIDFIELDERS and ATTACKERS
+     * 
+     * @param defenders     the number of defenders
+     * @param midfielders   the number of midfielders
+     * @param attackers     the number of attackers
+     */
     public StandardFormationPattern(int defenders, int midfielders, int attackers) {
         super(new HashMap<>());
         super.addFieldPosition(FieldPosition.GOALIE, 1);

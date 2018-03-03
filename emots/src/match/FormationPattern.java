@@ -75,6 +75,13 @@ public class FormationPattern {
         return players;
     }
     
+    /** Adds a field position and the number of players playing on that position
+     * to the already existing pattern. Should only be used from child classes.
+     * 
+     * @param position          the new field position
+     * @param numberOfPlayers   the number of players playing on the new
+     *                          field position
+     */
     protected void addFieldPosition(FieldPosition position, int numberOfPlayers) {
         pattern.put(position, numberOfPlayers);
     }

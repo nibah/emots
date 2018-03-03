@@ -8,9 +8,7 @@ public class StandardMatchStatistics implements MatchStatistics{
     private int homeGoals;
     private int guestGoals;
     
-    /** Standard constructor initialising home and guest score with 0
-     * 
-     */
+    /** Standard constructor initialising home and guest score with 0 */
     StandardMatchStatistics () {
         homeGoals = 0;
         guestGoals = 0;

@@ -1,8 +1,6 @@
 package match;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -113,6 +111,14 @@ public class MatchTactic {
         return players.toArray(new Player[0]);
     }
     
+    /** Decides if the formation used by this MatchTactic comply with a given
+     * FormationPattern. To comply, equal number of players should play on
+     * each FieldPosition.
+     * 
+     * @param pattern   the FormationPattern that should be matched to the
+     *                  formation of this tactic
+     * @return true if the formation matches with the pattern, false otherwise
+     */
     public boolean matchesPattern(FormationPattern pattern) {
         if (pattern.numberOfPlayers() != getPlayers().length)
             return false;
@@ -122,6 +128,13 @@ public class MatchTactic {
         return true;
     }
     
+    /** Counts the number of players playing on a given FieldPosition.
+     * Sub-FieldPositions are not counted. To count Sub-FieldPositions use
+     * numberOf(FieldPosition fieldPosition, true).
+     * 
+     * @param fieldPosition
+     * @return 
+     */
     public int numberOf(FieldPosition fieldPosition) {
         int count = 0;
         for (FieldPosition currentPosition : formation.values())
@@ -130,6 +143,13 @@ public class MatchTactic {
         return count;
     }
     
+    /** Counts the number of players playing on a given FieldPosition. If
+     * countSubpositions is true, Sub-Fieldpositions are also counted.
+     * 
+     * @param fieldPosition         the field position
+     * @param countSubpositions     if true, sub-FieldPositions are also counted
+     * @return the number of players
+     */
     public int numberOf(FieldPosition fieldPosition, boolean countSubpositions) {
         if (!countSubpositions)
             return numberOf(fieldPosition);
