@@ -35,6 +35,7 @@ public class Match {
         this.guestTactic = guestTactic;
         this.eventController = eventController;
         //this.matchRules = matchRules;
+        this.result = new Result(this);
     }
     
     /**
@@ -97,6 +98,7 @@ public class Match {
      * 
      */
     public void play(){
-    
+        eventController.rollEvent().execute(this);
+        
     }
 }
