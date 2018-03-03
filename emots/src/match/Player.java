@@ -29,6 +29,14 @@ public class Player {
     
     /**
      * 
+     * @return true if the player is eligible, false otherwise
+     */
+    public boolean isEligible() {
+        return eligible;
+    }
+    
+    /**
+     * 
      * @return              id 
      */
     public int getId (){
@@ -49,6 +57,14 @@ public class Player {
      */
     public PlayerPosition getPosition (){
         return position;
+    }
+    
+    /**
+     * 
+     * @return the amount of stars the player has
+     */
+    public int getStars() {
+        return stars;
     }
     
     /** Sets eligibility of player.
