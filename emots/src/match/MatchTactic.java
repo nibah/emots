@@ -117,7 +117,7 @@ public class MatchTactic {
         if (pattern.numberOfPlayers() != getPlayers().length)
             return false;
         for (FieldPosition fieldPosition : pattern.getPattern().keySet())
-            if (pattern.numberOf(fieldPosition) != this.numberOf(fieldPosition))
+            if (pattern.numberOf(fieldPosition) != this.numberOf(fieldPosition, true))
                 return false;
         return true;
     }
