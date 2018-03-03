@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 /** Represents the match-tactics of a team.
@@ -11,7 +12,7 @@ import java.util.Map.Entry;
  * @author nibah
  */
 public class MatchTactic {
-    private HashMap<Player, FieldPosition> formation;
+    private Map<Player, FieldPosition> formation;
             /* Represents the formation the players play on the field. */
     private int numberOfSubs;    // The number of substitutions which already took place
     private int numberOfChanges; /* The number of onfield changes which already took place,
@@ -23,7 +24,7 @@ public class MatchTactic {
      * 
      * @param formation     the formation of the players
      */
-    public MatchTactic(HashMap<Player, FieldPosition> formation) {
+    public MatchTactic(Map<Player, FieldPosition> formation) {
         this.formation = formation;
         numberOfSubs = 0;
         numberOfChanges = 0;
@@ -37,7 +38,7 @@ public class MatchTactic {
      * 
      * @return the HashMap<Player, FieldPosition> containing the formation
      */
-    public HashMap<Player, FieldPosition> getFormation() {return formation;}
+    public Map<Player, FieldPosition> getFormation() {return formation;}
     
     /** Returns the number of substitutions, which already took place
      * 
