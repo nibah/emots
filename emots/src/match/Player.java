@@ -61,7 +61,7 @@ public class Player {
     
     /**
      * 
-     * @return the amount of stars the player has
+     * @return              the amount of stars the player has
      */
     public int getStars() {
         return stars;
