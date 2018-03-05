@@ -4,6 +4,7 @@ import match.FieldPosition;
 import match.Match;
 import match.MatchEvent;
 import match.MatchTactic;
+import match.Player;
 
 /**Represents a standard MatchEvent in which either every player or those of specific FieldPositions of the home and guest teams will be compared. 
  *
@@ -57,14 +58,16 @@ public class HomeVersusGuest implements MatchEvent{
     public void execute(Match match) {
         MatchTactic homeTactic = match.getHomeTactic();
         MatchTactic guestTactic = match.getGuestTactic();
+        Player[] homePlayers = homeTactic.getPosition(homeFieldPosition);
+        Player[] guestPlayers = guestTactic.getPosition(homeFieldPosition);
         int homeStarsInPosition = 0;
         int guestStarsInPosition = 0;
         
-        for(int i=0; i<homeTactic.getPosition(homeFieldPosition).length; i++){
-            homeStarsInPosition = homeStarsInPosition + homeTactic.getPosition(homeFieldPosition)[i].getStars();
+        for(int i=0; i<homePlayers.length; i++){
+            homeStarsInPosition += homePlayers[i].getStars();
         }
         for(int i=0; i<guestTactic.getPosition(guestFieldPosition).length; i++){
-            guestStarsInPosition = guestStarsInPosition + guestTactic.getPosition(guestFieldPosition)[i].getStars();
+            guestStarsInPosition += guestPlayers[i].getStars();
         }
         if(homeStarsInPosition > guestStarsInPosition){
             match.getResult().getStatistics().homeScore();
