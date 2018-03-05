@@ -48,7 +48,8 @@ public class HomeVersusGuest implements MatchEvent{
         return description;
     }
 
-    /**Executes event: compares number of stars of the teams on different/same FieldPositions and records scoring in match statistics.
+    /**Executes event: compares number of stars of the teams on different/same 
+     * FieldPositions and records scoring in match statistics.
      * 
      * @param match              A specific Match of the season.
      */
