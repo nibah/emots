@@ -1,6 +1,6 @@
 package match.standard;
 
-import match.standard.NoSuchEventException;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -15,7 +15,8 @@ public class StandardMatchEventController implements MatchEventController{
 
     private Set<MatchEvent> events;
     private int numberOfEvents;
-    private Random rand = new Random();
+    private Date date = new Date();
+    private Random rand = new Random(date.getTime());
     
     public StandardMatchEventController(Set<MatchEvent> events){
         this.events = events;
