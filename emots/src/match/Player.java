@@ -53,6 +53,19 @@ public class Player {
     
     /**
      * 
+     * @return the name of the player followed by a number of * characters
+     * representing the stars of the players.
+     */
+    public String getNameStars() {
+        String starString = "(";
+        for (int i = 0; i<stars; i++)
+            starString += "*";
+        starString += ")";
+        return name + starString;
+    }
+    
+    /**
+     * 
      * @return              player position 
      */
     public PlayerPosition getPosition (){
