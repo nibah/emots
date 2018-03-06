@@ -77,7 +77,7 @@ public class Result {
         ended = true;
     }
     
-    /** Determines the winner of the match and ends the mathc. Usually used
+    /** Determines the winner of the match and ends the match. Usually used
      * when one of the teams violate some of the match rules and therefore
      * not allowed to paricipate in the match. To evauate the winner based on
      * the scores, use evaluateWinner() instead.
