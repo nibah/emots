@@ -59,24 +59,31 @@ public class HomeVersusGuest implements MatchEvent{
         MatchTactic homeTactic = match.getHomeTactic();
         MatchTactic guestTactic = match.getGuestTactic();
         Player[] homePlayers = homeTactic.getPosition(homeFieldPosition);
-        Player[] guestPlayers = guestTactic.getPosition(homeFieldPosition);
+        Player[] guestPlayers = guestTactic.getPosition(guestFieldPosition);
         int homeStarsInPosition = 0;
         int guestStarsInPosition = 0;
         
         for(int i=0; i<homePlayers.length; i++){
             homeStarsInPosition += homePlayers[i].getStars();
         }
-        for(int i=0; i<guestTactic.getPosition(guestFieldPosition).length; i++){
+        for(int i=0; i<guestPlayers.length; i++){
             guestStarsInPosition += guestPlayers[i].getStars();
         }
+        String message = "Home " + homeFieldPosition + "S(" +
+                         homeStarsInPosition + ") " +
+                         "VS Guest " + guestFieldPosition + "S(" +
+                         guestStarsInPosition + ")" + "\n";
         if(homeStarsInPosition > guestStarsInPosition){
             match.getResult().getStatistics().homeScore();
+            message += "Home team scores.";
         }
         else if(guestStarsInPosition > homeStarsInPosition){
             match.getResult().getStatistics().guestScore();
+            message += "Guest team scores.";
         }
         else{
-            //TODO: update MatchStatistics and StandardMatchStatistics
+            message += "No score.";
         }
+        match.getResult().getStatistics().getMatchMessages().addMessage(message);
     }
 }
