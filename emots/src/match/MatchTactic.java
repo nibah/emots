@@ -209,7 +209,7 @@ public class MatchTactic {
         for (Entry<Player, FieldPosition> entry : formation.entrySet()) {
             Player player = entry.getKey();
             FieldPosition position = entry.getValue();
-            formationString += player.getName() + " - " + position + ",\n";
+            formationString += player.getNameStars() + " - " + position + ",\n";
         }
         formationString = formationString.substring(0, formationString.length()-2);
         

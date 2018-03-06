@@ -47,7 +47,7 @@ public class StandardMatchRules implements MatchRules {
             new StandardFormationPattern(5,3,2),
             new StandardFormationPattern(5,4,1)
         };
-        round = 1;
+        round = 0;
         illegalTacticMessages = new ArrayList<>();
     }
     
@@ -84,7 +84,7 @@ public class StandardMatchRules implements MatchRules {
         this.maxPlayers = maxPlayers;
         this.maxSubs = maxSubs;
         this.subBackAllowed = subBackAllowed;
-        round = 1;
+        round = 0;
         illegalTacticMessages = new ArrayList<>();
     }
     

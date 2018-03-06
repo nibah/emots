@@ -14,7 +14,7 @@ public class Match {
     private MatchTactic homeTactic;
     private MatchTactic guestTactic;
     private MatchEventController eventController;
-    //private MatchRules matchRules;
+    private MatchRules matchRules;
     private Result result;
     
     //TODO: update constructor by adding MatchRules to parameters
@@ -25,16 +25,18 @@ public class Match {
      * @param guest             guest team
      * @param homeTactic        tactic of home team
      * @param guestTactic       tactic of guest team
+     * @param matchRules        rules of the match
      * @param eventController   eventController for this specific match
      */
-    public Match (Team home, Team guest, MatchTactic homeTactic, MatchTactic guestTactic, MatchEventController eventController){
+    public Match (Team home, Team guest, MatchTactic homeTactic, MatchTactic guestTactic,
+            MatchRules matchRules, MatchEventController eventController){
         id = numberOfMatches++;
         this.home = home;
         this.guest = guest;
         this.homeTactic = homeTactic;
         this.guestTactic = guestTactic;
         this.eventController = eventController;
-        //this.matchRules = matchRules;
+        this.matchRules = matchRules;
         this.result = new Result(this);
     }
     
@@ -98,6 +100,32 @@ public class Match {
      * 
      */
     public void play(){
-        eventController.rollEvent().execute(this);    
+        //Check if the tactics of the teams are legal according to the match rules
+        boolean legalHomeTactic = matchRules.allowedTactic(homeTactic);
+        boolean legalGuestTactic = matchRules.allowedTactic(guestTactic);
+        if (!legalHomeTactic) {
+            if (!legalGuestTactic) {
+                result.setWinner(Winner.AUTOMATIC_DRAW);
+                return;
+            } else {
+                result.setWinner(Winner.AUTOMATIC_GUEST);
+                return;
+            }
+        } else if (!legalGuestTactic) {
+            result.setWinner(Winner.AUTOMATIC_HOME);
+            return;
+        }
+        
+        //Execute the match events
+        MatchMessages messages = result.getStatistics().getMatchMessages();
+        while (matchRules.hasNextRound()) {
+            MatchEvent event = eventController.rollEvent();
+            event.execute(this);
+            matchRules.roundEnd();
+        }
+        
+        //Determine winner
+        result.evaluateWinner();
+        result.setEnded();
     }
 }
