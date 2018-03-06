@@ -7,11 +7,13 @@ package match;
 public class StandardMatchStatistics implements MatchStatistics{
     private int homeGoals;
     private int guestGoals;
+    private MatchMessages messages;
     
     /** Standard constructor initialising home and guest score with 0 */
     StandardMatchStatistics () {
         homeGoals = 0;
         guestGoals = 0;
+        messages = new MatchMessages();
     }
     
     /** Returns the score of the home team
@@ -27,6 +29,11 @@ public class StandardMatchStatistics implements MatchStatistics{
      */
     @Override
     public int getGuestGoals() {return guestGoals;}
+    
+    @Override
+    public MatchMessages getMatchMessages() {
+        return messages;
+    }
     
     /** Increments the score of the guest team by 1 */
     @Override

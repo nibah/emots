@@ -22,4 +22,11 @@ public interface MatchStatistics {
     
     /** Increments the score of the home team by 1 */
     public void homeScore();
+    
+    /** Returns a MatchMessages object managing the messages concerning the Match
+     * which statistics are saved in this object.
+     * 
+     * @return the MatchMessages object containing the messages
+     */
+    public MatchMessages getMatchMessages(); 
 }
